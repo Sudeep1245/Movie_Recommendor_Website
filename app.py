@@ -1,6 +1,20 @@
 import streamlit as st
 import pickle
+import os
+import gdown
 
+
+def download_similarity_file():
+    file_path = "similarity.pkl"
+    if not os.path.exists(file_path):
+        st.warning("Downloading similarity.pkl from Google Drive...")
+        # Replace this with your actual file ID
+        file_id = "12NLEDxyYAHqchbwFiAkiuZbetn4O-wd5"
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url,'similarity.pkl', quiet=False)
+        st.success("Download complete!")
+
+download_similarity_file()
 
 def recommend(movie):
     movie_index = movies_list[movies_list['title']==movie].index[0]
